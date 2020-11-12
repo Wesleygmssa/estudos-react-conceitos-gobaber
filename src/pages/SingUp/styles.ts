@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
-import signInBackgroudImg from '../../assets/sign-in-background.png';
+import signInBackgroudImg from '../../assets/sign-up-background.png';
 
 export const Container = styled.div`
     height: 100vh;
@@ -48,7 +48,7 @@ form{
 //não pega os outroas a 
 > a {
         
-        color: #ff9000;
+        color: #f4ede8;
         margin-top: 24px;
         text-decoration: none;
         transition: 0.2s;
@@ -58,7 +58,7 @@ form{
 
 
         &:hover{
-            color: ${shade(0.2, '#ff9000')}
+            color: ${shade(0.2, '#f4ede8')}
         }
 
         svg{
