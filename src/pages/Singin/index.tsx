@@ -6,6 +6,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 
+
 const Singin: React.FC = () => {
 
     return (
@@ -13,7 +14,7 @@ const Singin: React.FC = () => {
             <Container>
                 <Content>
                     <img src={logoimg} alt="Gobarber" />
-                    <form action="">
+                    <form >
                         <h1>Faça seu logon</h1>
 
                         <Input
