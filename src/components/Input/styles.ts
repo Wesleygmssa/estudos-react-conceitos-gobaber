@@ -22,7 +22,6 @@ export const Container = styled.div<ContainerProps>`
 
            ${props => props.isFilled && css`
            color: #ff9000;
-           /* border-color:  #ff9000; */
         `}
         
         ${props => props.isFocused && css`
@@ -41,9 +40,8 @@ export const Container = styled.div<ContainerProps>`
             color: #666360;
 
             
-        }
+           }
 
-       
         }
 
        svg{

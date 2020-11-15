@@ -13,7 +13,6 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isFilled, SetIsFilled] = useState(false);
 
-
     const { fieldName, defaultValue, error, registerField } = useField(name);
 
     useEffect(() => {
@@ -32,13 +31,13 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     const handleInputBlue = useCallback(() => {
         setIsFocused(false);
 
-        // VERIFICANDO SE INPUT ESTA VAZIO.
         if (inputRef.current?.value) {
             SetIsFilled(true);
         } else {
             SetIsFilled(false);
         }
-        SetIsFilled(!!inputRef.current?.value);
+
+        // SetIsFilled(!!inputRef.current?.value);
 
     }, []);
 
@@ -54,6 +53,8 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
                 ref={inputRef}
                 {...rest}
             />
+
+            {error}
         </Container>
     );
 };
