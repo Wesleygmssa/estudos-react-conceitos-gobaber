@@ -3,7 +3,7 @@ import Singin from './pages/Singin';
 import SinUp from './pages/SingUp'
 import GlobalStyle from './styles/global';
 
-import { AuthProvider } from './context/AuthContext'; //dados pelo contexto
+import { AuthProvider } from './hooks/AuthContext'; //dados pelo contexto
 
 
 
