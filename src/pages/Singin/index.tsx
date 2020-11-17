@@ -2,28 +2,33 @@ import React, { useCallback, useRef, useContext } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import logoimg from '../../assets/logo.svg';
+
 import { Container, Content, Background } from './styles';
+
+import logoimg from '../../assets/logo.svg';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+
 import getValidationErrors from '../../utils/getValidationErrors';
 import * as Yup from 'yup';
 import { AuthContext } from '../../context/AuthContext';
 
-
+interface SignInFormData {
+    email: string;
+    password: string;
+}
 
 const Singin: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
 
     const { signIn } = useContext(AuthContext);
 
-    const handleSubmit = useCallback(async (data: object) => {
+    const handleSubmit = useCallback(async (data: SignInFormData) => {
         try {
             formRef.current?.setErrors({});
 
             //VALIDATION
             const schema = Yup.object().shape({
-                name: Yup.string().required('Nome obrigatório'),
                 email: Yup.string()
                     .required('E-mail obrigatório')
                     .email('E-mail obrigatório'),
@@ -35,7 +40,10 @@ const Singin: React.FC = () => {
                 abortEarly: false,
             });
 
-            signIn();
+            signIn({
+                email: data.email,
+                password: data.password,
+            });
 
         } catch (err) {
             const errors = getValidationErrors(err);
