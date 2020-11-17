@@ -3,10 +3,16 @@ import Singin from './pages/Singin';
 import SinUp from './pages/SingUp'
 import GlobalStyle from './styles/global';
 
+import { AuthProvider } from './context/AuthContext'; //dados pelo contexto
+
+
+
 const App: React.FC = () => {
   return (
     <>
-      <Singin />
+      <AuthProvider >{/* tudo que esta dentro do provider tem acesso a variavel global */}
+        <Singin />
+      </AuthProvider>
       <GlobalStyle />
     </>
   )

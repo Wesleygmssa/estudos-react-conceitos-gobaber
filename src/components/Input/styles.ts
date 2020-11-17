@@ -22,18 +22,21 @@ export const Container = styled.div<ContainerProps>`
         & + div{
             margin-top: 8px;
            }
-           ${props => props.isErrored && css`
-           border-color:  #c53030;
-        `}
-
            ${props => props.isFilled && css`
            color: #ff9000;
+        `}
+
+        ${props => props.isErrored && css`
+           border-color:  #c53030;
         `}
         
         ${props => props.isFocused && css`
            color: #ff9000;
            border-color:  #ff9000;
         `}
+        
+         
+
         
 
         input{
