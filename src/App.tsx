@@ -5,7 +5,7 @@ import GlobalStyle from './styles/global';
 
 import { AuthProvider } from './hooks/AuthContext'; //dados pelo contexto
 
-
+import ToastContainer from './components/ToastContainer';
 
 const App: React.FC = () => {
   return (
@@ -13,9 +13,10 @@ const App: React.FC = () => {
       <AuthProvider >{/* tudo que esta dentro do provider tem acesso a variavel global */}
         <Singin />
       </AuthProvider>
+      <ToastContainer />
       <GlobalStyle />
     </>
-  )
+  );
 }
 
 export default App;
