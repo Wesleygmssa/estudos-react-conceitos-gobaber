@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ToastProps {
     type?: 'success' | 'error' | 'info';
+    hasDescription: boolean;
 }
 
 export const Container = styled.div`
@@ -70,4 +71,16 @@ button{
     background: transparent;
     color: inherit;
 }
+
+
+
+${props => !props.hasDescription && css`
+           align-items: center;
+   
+   
+           svg{
+               margin-top: 0;
+           }
+       `}
+           
 `;

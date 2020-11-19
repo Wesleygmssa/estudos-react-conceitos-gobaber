@@ -1,49 +1,44 @@
 import React from 'react';
+
 import { FiAlertCircle, FiXCircle } from 'react-icons/fi';
+
 import { Container, Toast } from './styles';
 
-const ToastContainer: React.FC = () => {
+import { ToastMessage, useToast } from '../../hooks/ToastContext';
+
+
+
+interface ToastContainerProps {
+    messages: ToastMessage[];
+}
+
+const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
+    const { removeToast } = useToast();
     return (
         <Container>
-            <Toast >
-                <FiAlertCircle size={18} />
 
-                <div>
-                    <strong>Aconteceu um erro</strong>
-                    <p>Não possivel fazer login na aplicação</p>
-                </div>
+            {messages.map(message => {
 
-                <button type="button">
-                    <FiXCircle size={18} />
-                </button>
-            </Toast>
+                return (
+                    <Toast
+                        key={message.id}
+                        type={message.type}
+                        hasDescription={!!message.description}>
 
-            <Toast type="success">
-                <FiAlertCircle size={18} />
+                        <FiAlertCircle size={18} />
 
-                <div>
-                    <strong>Aconteceu um erro</strong>
-                    <p>Não possivel fazer login na aplicação</p>
-                </div>
+                        <div>
+                            <strong>{message.title}</strong>
+                            {message.description && <p>{message.description}</p>}
+                        </div>
 
-                <button type="button">
-                    <FiXCircle size={18} />
-                </button>
-            </Toast>
+                        <button type="button" onClick={() => { removeToast(message.id) }}>
+                            <FiXCircle size={18} />
+                        </button>
+                    </Toast>
+                )
+            })}
 
-
-            <Toast type="error">
-                <FiAlertCircle size={18} />
-
-                <div>
-                    <strong>Aconteceu um erro</strong>
-                    <p>Não possivel fazer login na aplicação</p>
-                </div>
-
-                <button type="button">
-                    <FiXCircle size={18} />
-                </button>
-            </Toast>
         </Container>
     )
 }
