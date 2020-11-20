@@ -2,9 +2,10 @@ import React from 'react';
 
 import { FiAlertCircle, FiXCircle } from 'react-icons/fi';
 
-import { Container, Toast } from './styles';
+import { Container } from './styles';
+import Toast from './Toast';
 
-import { ToastMessage, useToast } from '../../hooks/ToastContext';
+import { ToastMessage } from '../../hooks/ToastContext';
 
 
 
@@ -13,33 +14,17 @@ interface ToastContainerProps {
 }
 
 const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
-    const { removeToast } = useToast();
     return (
         <Container>
 
+            {/* A mensagem de toast só será iniciada se tiver mensagem no array */}
             {messages.map(message => {
-
                 return (
-                    <Toast
-                        key={message.id}
-                        type={message.type}
-                        hasDescription={!!message.description}>
-
-                        <FiAlertCircle size={18} />
-
-                        <div>
-                            <strong>{message.title}</strong>
-                            {message.description && <p>{message.description}</p>}
-                        </div>
-
-                        <button type="button" onClick={() => { removeToast(message.id) }}>
-                            <FiXCircle size={18} />
-                        </button>
-                    </Toast>
+                    <Toast key={message.id} message={message} />
                 )
             })}
 
-        </Container>
+        </Container >
     )
 }
 
