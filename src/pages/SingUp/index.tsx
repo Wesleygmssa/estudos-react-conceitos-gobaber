@@ -8,14 +8,23 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AnimationContainer } from '../SingUp/styles';
+import api from '../../services/api';
+import { useToast } from '../../hooks/ToastContext';
 
+interface SignUpFormData {
+    name: string;
+    email: string;
+    password: string;
+}
 
 const SingUp: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
-    console.log(formRef.current);
-    const handleSubmit = useCallback(async (data: object) => {
+    const { addToast } = useToast();
+    const history = useHistory();
+    // console.log(formRef.current);
+    const handleSubmit = useCallback(async (data: SignUpFormData) => {
         try {
             formRef.current?.setErrors({});
 
@@ -32,13 +41,33 @@ const SingUp: React.FC = () => {
                 abortEarly: false,
             });
 
-        } catch (err) {
-            const errors = getValidationErrors(err);
+            await api.post("/users", data); // fazendo cadastro
 
-            formRef.current?.setErrors(errors);
-            console.log(errors)
+            history.push('/');
+
+            addToast({
+                type: 'success',
+                title: 'Cadastro realizado !',
+                description: 'Você já pode fazer seu logon',
+            })
+
+        } catch (err) {
+            if (err instanceof Yup.ValidationError) {
+                const errors = getValidationErrors(err);
+
+                formRef.current?.setErrors(errors);
+
+                return;
+            }
+
+            //mensagem pelo contexto
+            addToast({
+                type: 'error',
+                title: 'Erro no cadadtro',
+                description: 'Ocorreu um erro ao fazer cadastro do usuário, tente novamente'
+            });
         }
-    }, [])
+    }, [addToast, history])
 
     return (
         <>
