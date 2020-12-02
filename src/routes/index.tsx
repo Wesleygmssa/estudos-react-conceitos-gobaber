@@ -5,6 +5,7 @@ import Route from './RouteAuth'
 
 import SignIn from '../pages/Singin';
 import SignUp from '../pages/SingUp';
+import ForgotPassword from '../pages/ForgotPassword';
 
 import Dashboard from '../pages/Dashboard';
 
@@ -13,9 +14,10 @@ const Routes: React.FC = () => {
     return (
         <Switch>
             < Route exact path="/" component={SignIn} />
-            < Route path="/SignUp" component={SignUp} />
+            < Route path="/signup" component={SignUp} />
+            < Route path="/forgot-password" component={ForgotPassword} />
 
-            < Route path="/Dashboard" component={Dashboard} isPrivate />
+            < Route path="/dashboard" component={Dashboard} isPrivate />
         </Switch>
     );
 }
