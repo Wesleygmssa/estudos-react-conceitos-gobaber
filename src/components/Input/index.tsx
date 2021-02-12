@@ -3,7 +3,7 @@ import { Container, Error } from './styles';
 import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
-import Tooltip from '../Tooltip';
+// import Tooltip from '../Tooltip';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string,
@@ -46,7 +46,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     return (
         <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused} >
 
-            {Icon && <Icon size={20} />}
+            {Icon && <Icon size={40} />}
 
             <input
                 onFocus={handleInputFocus}
