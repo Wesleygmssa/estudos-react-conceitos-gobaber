@@ -13,7 +13,7 @@ import getValidationErrors from "../../utils/getValidationErrors";
 import * as Yup from "yup";
 import { useAuth } from "../../hooks/AuthContext";
 import { useToast } from "../../hooks/ToastContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 interface SignInFormData {
   email: string;
@@ -23,6 +23,7 @@ interface SignInFormData {
 const Singin: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const history = useHistory();
   const { signIn } = useAuth();
   const { addToast } = useToast();
 
@@ -47,6 +48,8 @@ const Singin: React.FC = () => {
           email: data.email,
           password: data.password,
         });
+
+        history.push("/dashboard");
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -64,7 +67,7 @@ const Singin: React.FC = () => {
         });
       }
     },
-    [signIn, addToast]
+    [signIn, addToast, history]
   );
 
   return (
