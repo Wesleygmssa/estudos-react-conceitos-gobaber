@@ -17,7 +17,7 @@ jest.mock("@unform/core", () => {
 });
 
 describe("Input component", () => {
-  it("should be able to render an input", () => {
+  it("renderizar uma entrada", () => {
     const { getByPlaceholderText } = render(
       <Input name="email" placeholder="E-mail" />
     );
@@ -25,7 +25,7 @@ describe("Input component", () => {
     expect(getByPlaceholderText("E-mail")).toBeTruthy();
   });
 
-  it("should render highlight on input focus", async () => {
+  it("deve renderizar o destaque no foco de entrada", async () => {
     const { getByPlaceholderText } = render(
       <Input name="email" placeholder="E-mail" />
     );

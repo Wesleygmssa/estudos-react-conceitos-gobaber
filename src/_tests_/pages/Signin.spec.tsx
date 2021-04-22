@@ -33,7 +33,7 @@ jest.mock("../../hooks/ToastContext", () => {
 });
 
 describe("SignIn Page", () => {
-  it("Should be able to sigin in", async () => {
+  it("Deve ser capaz de entrar", async () => {
     const { getByPlaceholderText, getByText } = render(<SignIn />);
 
     const emailField = getByPlaceholderText("E-mail");
@@ -50,7 +50,7 @@ describe("SignIn Page", () => {
     });
   });
 
-  it("Should not be able to sigin in with invalid credentials", async () => {
+  it("Não deve ser capaz de entrar com credenciais inválidas", async () => {
     const { getByPlaceholderText, getByText } = render(<SignIn />);
 
     const emailField = getByPlaceholderText("E-mail");
@@ -67,7 +67,7 @@ describe("SignIn Page", () => {
     });
   });
 
-  it("Should display an error if login error", async () => {
+  it("Deve exibir um erro se houver erro de login", async () => {
     mockedSignIn.mockImplementation(() => {
       throw new Error();
     });
